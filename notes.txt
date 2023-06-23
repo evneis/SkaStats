@@ -1,0 +1,9 @@
+
+Recommended bot hosting site
+https://daki.cc/
+
+https://tracker.gg/developers/docs/getting-started
+
+npm Scripts
+    npm init -y
+    npm i discord.js axios dotenv
