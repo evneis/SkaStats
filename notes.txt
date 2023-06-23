@@ -7,3 +7,6 @@ https://tracker.gg/developers/docs/getting-started
 npm Scripts
     npm init -y
     npm i discord.js axios dotenv
+
+
+# TASK LIST

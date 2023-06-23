@@ -22,7 +22,7 @@ client.on('messageCreate', async (message) => {
     }
     //TODO this must be CONTAINS
     else if (message.content === '%u') {
-        let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`, {
+        let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
             params: {
                 "TRN-Api-Key": process.env.TRN_API_KEY
             }
