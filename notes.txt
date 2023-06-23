@@ -10,3 +10,7 @@ npm Scripts
 
 
 # TASK LIST
+    Figure out save a JSON object 
+    Parse JSON object to return necessary information
+    Build a string response with that information  
+        Later on: Make a fancier response (graphs? images?)
