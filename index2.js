@@ -1,3 +1,5 @@
+// import * as commands from "globalMethods.js";
+const commands = require("./globalMethods")
 require('dotenv').config();
 
 const fs = require('fs').promises;
@@ -22,7 +24,9 @@ client.on('messageCreate', async (message) => {
         })
     }
     //TODO this must be CONTAINS
-    else if (message.content === '%u') {
+    else if (message.content.includes('%u map')) {
+        var map = commands.commandParse(message.content);
+        
         var pic;
         let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
             params: {
@@ -30,7 +34,8 @@ client.on('messageCreate', async (message) => {
             }
         }).then(response => {
             // console.log(response.data);
-            console.log(JSON.stringify(response.data["data"][0]["metadata"]["imageUrl"]));
+            console.log(JSON.stringify(response.data.data[0].metadata.imageUrl));
+            
             pic = response.data["data"][0]["metadata"]["imageUrl"];
 
 
