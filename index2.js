@@ -15,6 +15,7 @@ client.on('ready', () => {
 
 
 client.on('messageCreate', async (message) => {
+    var quote;
     if (message.content === 'ping') {
         message.reply({
             content: 'pong',
@@ -28,17 +29,24 @@ client.on('messageCreate', async (message) => {
             }
         }).then(response => {
             // console.log(response.data);
-            const responseObj = JSON.parse(JSON.stringify(response.data).toString());
-            console.log(responseObj)
-            fs.writeFile('response.json', JSON.stringify(response.data), function (err) {
-                console.log(err);
-            });
+            // var responseObj = JSON.parse(JSON.stringify(response.data).toString());
+            console.log(response.data.metadata.name);
+            
+
+
+            // fs.writeFile('response.json', JSON.stringify(response.data), function (err) {
+            //     console.log(err);
+            // });
         })
         .catch(err => {
             console.log(err)
+            quote = "Yikes uhoh"
+            message.reply({
+                content: quote,
+            })
         });
         // const quote = resp.data.content;
-        const quote = "Response recieved!"
+        quote = "Response recieved!"
 
         message.reply({
             content: quote,

@@ -11,7 +11,9 @@ npm Scripts
 
 # TASK LIST
     ##Figure out save a JSON object
-        Current implementation is saving it as this weird kinda subobjects - might have to look more into JSON to figure this out 
+        Current implementation is saving it as this weird kinda subobjects - might have to look more into JSON to figure this out
+        https://v8.dev/ - this might be useful
+        Need to query/print from an array-style JSON object - e.g multiple different maps
     Parse JSON object to return necessary information
     Build a string response with that information  
         Later on: Make a fancier response (graphs? images?)
