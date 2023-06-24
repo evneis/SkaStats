@@ -18,9 +18,27 @@ client.on('ready', () => {
 client.on('messageCreate', async (message) => {
     var quote;
     if (message.content.includes('%u help') || message.content === ('%u')) {
-        var msg = "testing <br> how to make <br> breaks"
         message.reply({
-            content: msg,
+            content: "testing",
+        })
+    }
+    else if (message.content.includes('%u stats')) {
+        var content;
+        let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`, {
+            headers: {
+                "TRN-Api-Key": process.env.TRN_API_KEY
+            }
+        }).then(response => {
+            console.log(response.data);
+            content = response.data.data.platformInfo.avatarUrl;
+        }).catch(err => {
+            console.log(err);
+        });
+        if(content === null){
+            content = "fuckin error bitch";
+        }
+        message.reply({
+            content: content,
         })
     }
     else if (message.content.includes('%u map')) {
@@ -28,11 +46,11 @@ client.on('messageCreate', async (message) => {
 
         var pic;
         let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
-            params: {
+            headers: {
                 "TRN-Api-Key": process.env.TRN_API_KEY
             }
         }).then(response => {
-            console.log(response.data);
+            console.log(response.data.config.data.errors);
             var respList = response.data.data;
 
             for(var i = 0; i < respList.length; i++){
