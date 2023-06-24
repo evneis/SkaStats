@@ -23,14 +23,15 @@ client.on('messageCreate', async (message) => {
     }
     //TODO this must be CONTAINS
     else if (message.content === '%u') {
+        var pic;
         let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
             params: {
                 "TRN-Api-Key": process.env.TRN_API_KEY
             }
         }).then(response => {
             // console.log(response.data);
-            console.log(JSON.stringify(response.data["data"][0]["metadata"]));
-            var pic = response.data["data"][0]["metadata"]["imageUrl"];
+            console.log(JSON.stringify(response.data["data"][0]["metadata"]["imageUrl"]));
+            pic = response.data["data"][0]["metadata"]["imageUrl"];
 
 
             // fs.writeFile('response.json', JSON.stringify(response.data), function (err) {
@@ -41,6 +42,9 @@ client.on('messageCreate', async (message) => {
             console.log(err)
         });
         // const quote = resp.data.content;
+        if(pic == null){
+            pic = "nothing found";
+        }
         quote = pic;
 
         message.reply({
