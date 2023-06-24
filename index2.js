@@ -30,7 +30,7 @@ client.on('messageCreate', async (message) => {
         }).then(response => {
             // console.log(response.data);
             console.log(JSON.stringify(response.data["data"][0]["metadata"]));
-            
+            var pic = response.data["data"][0]["metadata"]["imageUrl"];
 
 
             // fs.writeFile('response.json', JSON.stringify(response.data), function (err) {
@@ -41,7 +41,7 @@ client.on('messageCreate', async (message) => {
             console.log(err)
         });
         // const quote = resp.data.content;
-        quote = "Response recieved!"
+        quote = pic;
 
         message.reply({
             content: quote,
