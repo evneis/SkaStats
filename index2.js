@@ -18,15 +18,16 @@ client.on('ready', () => {
 
 client.on('messageCreate', async (message) => {
     var quote;
-    if (message.content === 'ping') {
+    if (message.content.includes('%u help') || message.content === ('%u')) {
+        var msg = "testing <br> how to make <br> breaks"
         message.reply({
-            content: 'pong',
+            content: msg,
         })
     }
     //TODO this must be CONTAINS
     else if (message.content.includes('%u map')) {
         var map = commands.commandParse(message.content);
-        
+
         var pic;
         let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
             params: {
@@ -34,14 +35,20 @@ client.on('messageCreate', async (message) => {
             }
         }).then(response => {
             // console.log(response.data);
-            console.log(JSON.stringify(response.data.data[0].metadata.imageUrl));
-            
-            pic = response.data["data"][0]["metadata"]["imageUrl"];
+            var respList = response.data.data;
+
+            for(var i = 0; i < respList.length; i++){
+                var obj = respList[i];
+                const objName = obj["metadata"]["name"];
+
+                if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
+                    pic = obj.metadata.imageUrl;
+                    console.log(pic);
+                    break;
+                }
+            }
 
 
-            // fs.writeFile('response.json', JSON.stringify(response.data), function (err) {
-            //     console.log(err);
-            // });
         })
         .catch(err => {
             console.log(err)

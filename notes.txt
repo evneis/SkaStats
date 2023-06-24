@@ -13,3 +13,8 @@ npm Scripts
     Build a string response with that information  
         Look up what the most efficient way to query a JSON list for an item
     Later on: Make a fancier response (graphs? images?)
+
+Where we at 
+    Need to make breaks in responses
+    WHat other info can we get from message object
+        look at discord.js documentation
