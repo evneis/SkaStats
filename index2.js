@@ -47,7 +47,7 @@ client.on('messageCreate', async (message) => {
 
         var pic;
         let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
-            headers: {
+            params: {
                 "TRN-Api-Key": process.env.TRN_API_KEY
             }
         }).then(response => {
@@ -57,8 +57,8 @@ client.on('messageCreate', async (message) => {
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
                 const objName = obj["metadata"]["name"];
-                // console.log(objName.toLowerCase());
-                // console.log(map.toLowerCase());
+                console.log(objName.toLowerCase());
+                console.log(map.toLowerCase());
                 if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
                     pic = obj.metadata.imageUrl;
                     console.log(pic);

@@ -20,3 +20,7 @@ Where we at
     Need to make breaks in responses
     WHat other info can we get from message object
         look at discord.js documentation
+
+# API Alternatives
+    Try using steams official API - might be more helpful
+    https://partner.steamgames.com/doc/webapi_overview - look up tutorial (using steam webapi for csgo stats)
