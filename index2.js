@@ -24,7 +24,6 @@ client.on('messageCreate', async (message) => {
             content: msg,
         })
     }
-    //TODO this must be CONTAINS
     else if (message.content.includes('%u map')) {
         var map = commands.commandParse(message.content);
 
