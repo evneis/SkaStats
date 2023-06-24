@@ -32,7 +32,8 @@ client.on('messageCreate', async (message) => {
             content = response.data.data.platformInfo.avatarUrl;
         }).catch(err => {
             console.log(JSON.stringify(err));
-            content = "error fucking caught damnit";
+            console.log(content);
+            content = "error fucking caught - stats";
         });
         if(content === null){
             content = "nothing found";
