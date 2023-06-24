@@ -31,10 +31,11 @@ client.on('messageCreate', async (message) => {
             console.log(response.data);
             content = response.data.data.platformInfo.avatarUrl;
         }).catch(err => {
-            console.log(err);
+            console.log(JSON.stringify(err));
+            content = "error fucking caught damnit";
         });
         if(content === null){
-            content = "fuckin error bitch";
+            content = "nothing found";
         }
         message.reply({
             content: content,
@@ -67,7 +68,7 @@ client.on('messageCreate', async (message) => {
 
         })
         .catch(err => {
-            console.log(err);
+            console.log(JSON.stringify(err));
             console.log("error hit - map")
         });
         // const quote = resp.data.content;
