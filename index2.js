@@ -29,8 +29,7 @@ client.on('messageCreate', async (message) => {
             }
         }).then(response => {
             // console.log(response.data);
-            // var responseObj = JSON.parse(JSON.stringify(response.data).toString());
-            console.log(response.data.metadata.name);
+            console.log(JSON.stringify(response.data["data"][0]["metadata"]));
             
 
 
@@ -40,10 +39,6 @@ client.on('messageCreate', async (message) => {
         })
         .catch(err => {
             console.log(err)
-            quote = "Yikes uhoh"
-            message.reply({
-                content: quote,
-            })
         });
         // const quote = resp.data.content;
         quote = "Response recieved!"
