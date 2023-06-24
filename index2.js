@@ -1,4 +1,3 @@
-// import * as commands from "globalMethods.js";
 const commands = require("./globalMethods")
 require('dotenv').config();
 
@@ -33,13 +32,14 @@ client.on('messageCreate', async (message) => {
                 "TRN-Api-Key": process.env.TRN_API_KEY
             }
         }).then(response => {
-            // console.log(response.data);
+            console.log(response.data);
             var respList = response.data.data;
 
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
                 const objName = obj["metadata"]["name"];
-
+                console.log(objName.toLowerCase());
+                console.log(map.toLowerCase());
                 if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
                     pic = obj.metadata.imageUrl;
                     console.log(pic);
