@@ -28,6 +28,8 @@ client.on('messageCreate', async (message) => {
             }
         }).then(response => {
             // console.log(response.data);
+            const responseObj = JSON.parse(JSON.stringify(response.data).toString());
+            console.log(responseObj)
             fs.writeFile('response.json', JSON.stringify(response.data), function (err) {
                 console.log(err);
             });

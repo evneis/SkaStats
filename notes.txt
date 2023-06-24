@@ -10,7 +10,8 @@ npm Scripts
 
 
 # TASK LIST
-    Figure out save a JSON object 
+    ##Figure out save a JSON object
+        Current implementation is saving it as this weird kinda subobjects - might have to look more into JSON to figure this out 
     Parse JSON object to return necessary information
     Build a string response with that information  
         Later on: Make a fancier response (graphs? images?)
