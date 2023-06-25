@@ -34,41 +34,24 @@ client.on('messageCreate', async(message) => {
             content: respObj,
         })
     }
-    else if(message.content.includes('%u map')){
-        var respObj;
-        var map = commands.commandParse(message.content);
-
+    else if(message.content.includes('%u map')) {
+        var respObj = 'hasnt been replaced';
+        
         let resp = await axios({
-            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`,
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
             console.log(response.data);
-            var respList = response.data.data;
-
-            for(var i = 0; i < respList.length; i++){
-                var obj = respList[i];
-                const objName = obj["metadata"]["name"];
-                console.log(objName.toLowerCase());
-                console.log(map.toLowerCase());
-                if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
-                    respObj = obj.metadata.imageUrl;
-                    console.log(respObj);
-                    break;
-                }
-            }
-
-
-        }).catch(err => {
-            console.log(JSON.stringify(err));
-            console.log("error hit - map")
-        });
-
-        if(respObj == null){
-            respObj = "nothing found";
-        }
+            respObj = "success!";
+        })
+        .catch(err => {
+            console.log(err);
+            respObj = 'Error!';
+        })
+        if(respObj === null) {respObj = 'cuck!';}
         message.reply({
-            content: PictureInPictureEvent,
+            content: respObj,
         })
     }
 })
