@@ -48,7 +48,7 @@ client.on('messageCreate', async (message) => {
         var pic;
         let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
             params: {
-                "TRN-Api-Key": process.env.TRN_API_KEY
+                "TRN-Api-Key": process.env.TRN_API_KEY,
             }
         }).then(response => {
             console.log(response.data);

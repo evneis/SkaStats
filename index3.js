@@ -15,22 +15,60 @@ client.on('ready', () => {
 
 client.on('messageCreate', async(message) => {
     if(message.content.includes('%u stats')) {
-        var respObj;
-        let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`, {
-            headers: {
-                "TRN-Api-Key": process.env.TRN_API_KEY
-            }
+        var respObj = 'Hasnt been replaces';
+
+        let resp = await axios({
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`,
+            headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
+            method: 'get',
         }).then(response => {
-            console.log(response.data);
-            console.log('success!');
             respObj = response.data.data.platformInfo.avatarUrl;
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err);
-            respObj = 'error!';
-        });
-        console.log(message.author);
+            respObj = 'Error!';
+        })
+        // console.log(message.author);
+        if(respObj === null){respObj='cuck';}
         message.reply({
             content: respObj,
+        })
+    }
+    else if(message.content.includes('%u map')){
+        var respObj;
+        var map = commands.commandParse(message.content);
+
+        let resp = await axios({
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`,
+            headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
+            method: 'get',
+        }).then(response => {
+            console.log(response.data);
+            var respList = response.data.data;
+
+            for(var i = 0; i < respList.length; i++){
+                var obj = respList[i];
+                const objName = obj["metadata"]["name"];
+                console.log(objName.toLowerCase());
+                console.log(map.toLowerCase());
+                if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
+                    respObj = obj.metadata.imageUrl;
+                    console.log(respObj);
+                    break;
+                }
+            }
+
+
+        }).catch(err => {
+            console.log(JSON.stringify(err));
+            console.log("error hit - map")
+        });
+
+        if(respObj == null){
+            respObj = "nothing found";
+        }
+        message.reply({
+            content: PictureInPictureEvent,
         })
     }
 })
