@@ -1,5 +1,8 @@
 module.exports.commandParse = function(str){
-    return str.split('map ')[1];
+    if(str.includes('%u map'))
+        return str.split('map ')[1];
+    else if(str.includes('%u stats'))
+        return str.split('stats ')[1];
 }
 
 /*

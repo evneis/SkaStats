@@ -22,6 +22,7 @@ client.on('messageCreate', async(message) => {
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
+            console.log(response.data.data.segments);
             respObj = response.data.data.platformInfo.avatarUrl;
         })
         .catch(err => {
@@ -34,11 +35,11 @@ client.on('messageCreate', async(message) => {
             content: respObj,
         })
     }
-    else if(message.content.includes('%u map')) {
+    if(message.content.includes('%u map')) {
         var respObj = 'hasnt been replaced';
         
         let resp = await axios({
-            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`,
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
