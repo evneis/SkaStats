@@ -10,14 +10,10 @@ npm Scripts
 
 
 # TASK LIST
-    Build a string response with that information  
-        Look up what the most efficient way to query a JSON list for an item
     Later on: Make a fancier response (graphs? images?)
 
 Where we at 
-    For some reason tracker api is broken now
     Need to figure out slash commands (why is /rockpaperscissors coming up? where did that come from?)
-    Need to make breaks in responses
     WHat other info can we get from message object
         look at discord.js documentation
 
@@ -37,8 +33,8 @@ Where we at
 Need to look into sending 2 replies for formatting sake
 
 Some text formatting notes:
-    Give this a shot - not sure if it works in content.
-content: {embed: {
+    Give this a shot - possible solution for multiple messages
+message.channel.send({embed: {
       color: 3447003,
       title: "Test:",
       fields: [
