@@ -28,6 +28,14 @@ Where we at
 ## Currently stuck
     axios/discord - else if will return an axios error even if it matches the if statement completely
 
+# Stats Suggestions
+    KD
+    Accuracy
+    HS%
+    W/L
+    Bank
+Need to look into sending 2 replies for formatting sake
+
 Some text formatting notes:
     Give this a shot - not sure if it works in content.
 content: {embed: {

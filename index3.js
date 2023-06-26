@@ -24,6 +24,12 @@ client.on('messageCreate', async(message) => {
         }).then(response => {
             console.log(response.data.data.segments);
             respObj = response.data.data.platformInfo.avatarUrl;
+            respObj = `${response.data.data.platformInfo.avatarUrl} \n
+            KD: ${response.data.data.segments[0].stats.kd.displayValue} \n
+            Accuracy: ${response.data.data.segments[0].stats.shotsAccuracy.displayValue} \n
+            Headshot Percentage: ${response.data.data.segments[0].stats.headshotPct.displayValue} \n
+            W/L: ${response.data.data.segments[0].stats.wlPercentage.displayValue}
+            Bank Account: $${response.data.data.segments[0].stats.moneyEarned.displayValue}`;
         })
         .catch(err => {
             console.log(err);
