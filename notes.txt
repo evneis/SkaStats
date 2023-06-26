@@ -27,3 +27,15 @@ Where we at
 
 ## Currently stuck
     axios/discord - else if will return an axios error even if it matches the if statement completely
+
+Some text formatting notes:
+    Give this a shot - not sure if it works in content.
+content: {embed: {
+      color: 3447003,
+      title: "Test:",
+      fields: [
+        { name: "Test 1", value: "Line1\nLine2\nLine3", inline: true},
+        { name: "Test 2", value: "AlsoLine1\nAlsoLine2\nAndLine3", inline: true}
+      ]
+    }
+  });
