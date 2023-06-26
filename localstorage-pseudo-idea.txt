@@ -13,3 +13,8 @@ Application:
     What about something like: %r -r
         Either delete entry with discordId or nullify - localStorage.removeItem("myCat");
             Will need to throw and error if name is null when querying
+
+Pseudo Example
+    if(%u stats)
+        const user = message.author.id;
+        axios.get(`www.google.com/csgo/steam/${user}`)
