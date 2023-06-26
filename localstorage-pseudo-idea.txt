@@ -1,0 +1,15 @@
+Examples in documentation:
+    localStorage.setItem("myCat", "Tom");
+    const cat = localStorage.getItem("myCat");
+Application: 
+    key should be discordId and value should be query term
+    What happens when you run: %r hirachidiamonds?
+        Check localdb for instance of discordId 
+            If exists:
+                replace with message content (.set())
+            If not:
+                Create entry - probably same commands
+    When stat request is ran, query for username and insert it into url
+    What about something like: %r -r
+        Either delete entry with discordId or nullify - localStorage.removeItem("myCat");
+            Will need to throw and error if name is null when querying

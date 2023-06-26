@@ -16,30 +16,34 @@ client.on('ready', () => {
 client.on('messageCreate', async(message) => {
     if(message.content.includes('%u stats')) {
         var respObj = 'Hasnt been replaces';
-
+        var pic = null;
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
             console.log(response.data.data.segments);
-            respObj = response.data.data.platformInfo.avatarUrl;
-            respObj = `${response.data.data.platformInfo.avatarUrl} \n
-            KD: ${response.data.data.segments[0].stats.kd.displayValue} \n
-            Accuracy: ${response.data.data.segments[0].stats.shotsAccuracy.displayValue} \n
-            Headshot Percentage: ${response.data.data.segments[0].stats.headshotPct.displayValue} \n
+            pic = response.data.data.platformInfo.avatarUrl;
+            respObj = `KD: ${response.data.data.segments[0].stats.kd.displayValue}
+            Accuracy: ${response.data.data.segments[0].stats.shotsAccuracy.displayValue}
+            Headshot Percentage: ${response.data.data.segments[0].stats.headshotPct.displayValue}
             W/L: ${response.data.data.segments[0].stats.wlPercentage.displayValue}
             Bank Account: $${response.data.data.segments[0].stats.moneyEarned.displayValue}`;
         })
         .catch(err => {
             console.log(err);
             respObj = 'Error!';
+            pic = null;
         })
         // console.log(message.author);
         if(respObj === null){respObj='cuck';}
         message.reply({
+            content: pic,
+        })
+        message.channel.send({
             content: respObj,
         })
+        
     }
     if(message.content.includes('%u map')) {
         var respObj = 'hasnt been replaced';
