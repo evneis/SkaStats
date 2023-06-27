@@ -1,8 +1,9 @@
 const commands = require("./globalMethods")
 require('dotenv').config();
-
 const fs = require('fs').promises;
 const axios = require('axios');
+var Datastore = require('nedb');
+
 // importing the items we need from discord.js package
 const { Client, GatewayIntentBits } = require('discord.js');
 //configuring events the bot can recieve
