@@ -69,7 +69,7 @@ client.on('messageCreate', async(message) => {
                     console.log(pic);
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
-                    Round Win Percentage: ${Math.round((obj.stats.wins.value / obj.stats.rounds.value) * 100)}%`;
+                    Round Win Percentage: ${commands.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
                     break;
                 }
             }
