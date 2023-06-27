@@ -19,7 +19,7 @@ client.on('messageCreate', async(message) => {
         var respObj = 'Hasnt been replaces';
         var pic = null;
         let resp = await axios({
-            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds`,
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
@@ -37,7 +37,7 @@ client.on('messageCreate', async(message) => {
             pic = null;
         })
         // console.log(message.author);
-        if(respObj === null){respObj='cuck';}
+        if(pic === null){pic='cuck';}
         message.reply({
             content: pic,
         })
@@ -50,7 +50,7 @@ client.on('messageCreate', async(message) => {
         var respObj = 'hasnt been replaced';
         
         let resp = await axios({
-            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`,
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
