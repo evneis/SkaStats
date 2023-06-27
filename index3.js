@@ -58,14 +58,18 @@ client.on('messageCreate', async(message) => {
         }).then(response => {
             console.log(response.data);
             var respList = response.data.data;
+            //TODO other map commands here in if statement
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
                 const objName = obj.metadata.name;
-                console.log(objName.toLowerCase());
-                console.log(map.toLowerCase());
+                // console.log(objName.toLowerCase());
+                // console.log(map.toLowerCase());
                 if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
                     pic = obj.metadata.imageUrl;
                     console.log(pic);
+
+                    stats = `Round Won: ${obj.stats.wins.displayValue}
+                    Round Win Percentage: ${Math.round((obj.stats.wins.value / obj.stats.rounds.value) * 100)}%`;
                     break;
                 }
             }
@@ -77,7 +81,11 @@ client.on('messageCreate', async(message) => {
         if(pic === null) {pic = 'cuck!';}
         message.reply({
             content: pic,
-        })
+        });
+        if(stats === null){stats = "cucky cheese!";}
+        message.channel.send({
+            content: stats,
+        });
     }
 })
 

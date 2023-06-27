@@ -5,6 +5,11 @@ module.exports.commandParse = function(str){
         return str.split('stats ')[1];
 }
 
+module.exports.round = function(num, places) {
+    var multiplier = Math.pow(10, places);
+    return Math.round(num * multiplier) / multiplier;
+}
+
 /*
 if(.includes(map))
     split 'map'
