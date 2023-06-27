@@ -11,7 +11,10 @@ npm Scripts
 
 # TASK LIST
     Later on: Make a fancier response (graphs? images?)
-
+    Map command structure
+        %map {map} - returns an overview of information about that map
+        %map wins - returns which map you have the most wins on (maybe top 3?)
+        
 Where we at 
     Need to figure out slash commands (why is /rockpaperscissors coming up? where did that come from?)
     WHat other info can we get from message object
