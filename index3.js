@@ -46,24 +46,37 @@ client.on('messageCreate', async(message) => {
         })
         
     }
+
     if(message.content.includes('%u map')) {
-        var respObj = 'hasnt been replaced';
-        
+        var pic = 'hasnt been replaced';
+        var stats = 'hasnt been replaced';
+        var map = commands.commandParse(message.content);
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
             console.log(response.data);
-            respObj = "success!";
+            var respList = response.data.data;
+            for(var i = 0; i < respList.length; i++){
+                var obj = respList[i];
+                const objName = obj.metadata.name;
+                // console.log(objName.toLowerCase());
+                // console.log(map.toLowerCase());
+                if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
+                    pic = obj.metadata.imageUrl;
+                    console.log(pic);
+                    break;
+                }
+            }
         })
         .catch(err => {
             console.log(err);
-            respObj = 'Error!';
+            pic = 'Error!';
         })
-        if(respObj === null) {respObj = 'cuck!';}
+        if(pic === null) {pic = 'cuck!';}
         message.reply({
-            content: respObj,
+            content: pic,
         })
     }
 })
