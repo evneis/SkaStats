@@ -48,8 +48,8 @@ client.on('messageCreate', async(message) => {
     }
 
     if(message.content.includes('%u map')) {
-        var pic = 'hasnt been replaced';
-        var stats = 'hasnt been replaced';
+        var pic = 'not found';
+        var stats = 'not found';
         var map = commands.commandParse(message.content);
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
@@ -61,8 +61,8 @@ client.on('messageCreate', async(message) => {
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
                 const objName = obj.metadata.name;
-                // console.log(objName.toLowerCase());
-                // console.log(map.toLowerCase());
+                console.log(objName.toLowerCase());
+                console.log(map.toLowerCase());
                 if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
                     pic = obj.metadata.imageUrl;
                     console.log(pic);
