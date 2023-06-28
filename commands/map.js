@@ -1,8 +1,13 @@
-const globalMethods = require("./globalMethods")
+// const globalMethods = require("./globalMethods")
 require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
 const { SlashCommandBuilder } = require('discord.js');
+
+function round(num, places) {
+    var multiplier = Math.pow(10, places);
+    return Math.round(num * multiplier) / multiplier;
+}
 
 module.exports = {
     //Change to options/selectmenu
@@ -35,7 +40,7 @@ module.exports = {
                     console.log(pic);
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
-                    Round Win Percentage: ${globalMethods.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
+                    Round Win Percentage: ${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
                     break;
                 }
             }

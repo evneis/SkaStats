@@ -1,10 +1,20 @@
-const globalMethods = require("./globalMethods")
+// const globalMethods = require("./globalMethods")
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 var Datastore = require('nedb');
 
+function round(num, places) {
+    var multiplier = Math.pow(10, places);
+    return Math.round(num * multiplier) / multiplier;
+}
+function commandParse(str){
+    if(str.includes('%u map'))
+        return str.split('map ')[1];
+    else if(str.includes('%u stats'))
+        return str.split('stats ')[1];
+}
 // importing the items we need from discord.js package
 const { Client, Collection, Events, GatewayIntentBits, EmbedBuilder } = require('discord.js');
 //configuring events the bot can recieve
@@ -66,7 +76,7 @@ client.on('messageCreate', async(message) => {
         var pic = 'not found';
         var stats = 'not found';
         var embedded = null;
-        var map = globalMethods.commandParse(message.content);
+        var map = commandParse(message.content);
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
@@ -85,13 +95,13 @@ client.on('messageCreate', async(message) => {
                     console.log(pic);
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
-                    Round Win Percentage: ${globalMethods.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
+                    Round Win Percentage: ${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
 
                     embedded = new EmbedBuilder()
                         .setTitle(`Stats for ${message.author.username} on ${obj.metadata.name}`)
                         .setAuthor({name: client.user.username, iconURL: `${client.user.avatarURL({dynamic: true})}`})
                         .addFields({name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true},
-                            {name: `Round Win Percentage`, value: `${globalMethods.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
+                            {name: `Round Win Percentage`, value: `${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
                         .setImage(`${obj.metadata.imageUrl}`)
                     break;
                 }
@@ -105,7 +115,7 @@ client.on('messageCreate', async(message) => {
         // message.reply({
         //     content: pic,
         // });
-        if(stats === null){stats = "cucky cheese!";}
+        if(embedded === null){embedded = "cucky cheese!";}
         message.channel.send({
             embeds: [embedded],
         });
