@@ -43,13 +43,14 @@ module.exports = {
                     stats = `Round Won: ${obj.stats.wins.displayValue}
                     Round Win Percentage: ${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
 
+                    
                     embedded = new EmbedBuilder()
                         .setTitle(`Stats for ${interaction.user} on ${obj.metadata.name}`)
                         // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})
                         .addFields({name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true},
                             {name: `Round Win Percentage`, value: `${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
-                        .setImage(`${obj.metadata.imageUrl}`)
-
+                        .setImage(`${obj.metadata.imageUrl}`);
+                    
                     break;
                 }
             }
@@ -58,8 +59,9 @@ module.exports = {
             console.log(err);
             pic = 'Error!';
         })
+
         if(embedded === null) {embedded = 'cuck!';}
         // await interaction.reply(pic);
-        await interaction.channel.send({embeds: embedded});
+        await interaction.reply({embeds: [embedded]});
     },
 };
