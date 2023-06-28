@@ -1,4 +1,4 @@
-const globalMethods = require("./globalMethods")
+// const globalMethods = require("./globalMethods")
 require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');

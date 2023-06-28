@@ -15,11 +15,11 @@ module.exports = {
         .setName('map')
         .setDescription('Returns round wins for a provided map')
         .addStringOption(option => 
-            option.setName('map input')
-                .setDescription('The map you would like to see stats for'))
-                .setRequired(true),
+            option.setName('map')
+                .setDescription('The map you would like to see stats for')
+                .setRequired(true)),
     async execute(interaction) {
-        const map = interaction.options.getString('map input');
+        const map = interaction.options.getString('map');
         var pic = 'not found';
         var stats = 'not found';
         let resp = await axios({
