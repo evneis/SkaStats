@@ -1,4 +1,4 @@
-const commands = require("./globalMethods")
+const globalMethods = require("./globalMethods")
 require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
@@ -35,7 +35,7 @@ module.exports = {
                     console.log(pic);
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
-                    Round Win Percentage: ${commands.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
+                    Round Win Percentage: ${globalMethods.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
                     break;
                 }
             }

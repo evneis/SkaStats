@@ -1,4 +1,4 @@
-const commands = require("./globalMethods")
+const globalMethods = require("./globalMethods")
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
@@ -66,7 +66,7 @@ client.on('messageCreate', async(message) => {
         var pic = 'not found';
         var stats = 'not found';
         var embedded = null;
-        var map = commands.commandParse(message.content);
+        var map = globalMethods.commandParse(message.content);
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
@@ -85,13 +85,13 @@ client.on('messageCreate', async(message) => {
                     console.log(pic);
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
-                    Round Win Percentage: ${commands.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
+                    Round Win Percentage: ${globalMethods.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
 
                     embedded = new EmbedBuilder()
                         .setTitle(`Stats for ${message.author.username} on ${obj.metadata.name}`)
                         .setAuthor({name: client.user.username, iconURL: `${client.user.avatarURL({dynamic: true})}`})
                         .addFields({name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true},
-                            {name: `Round Win Percentage`, value: `${commands.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
+                            {name: `Round Win Percentage`, value: `${globalMethods.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
                         .setImage(`${obj.metadata.imageUrl}`)
                     break;
                 }
