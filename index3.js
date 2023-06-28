@@ -36,15 +36,15 @@ client.on('messageCreate', async(message) => {
             embedTest = new EmbedBuilder()
                 .setColor(0x0099FF)
                 .setTitle(`Stats for ${message.author.username}`)
-                // .setAuthor({name: `${message.author.username}`, iconURL: `${message.author.avatarURL}`})
+                //Maybe change these to the bot's stuff
+                .setAuthor({name: message.author.username,iconURL: `${message.author.avatarURL({dynamic: true})}`})
                 .addFields({name: 'KD', value: response.data.data.segments[0].stats.kd.displayValue},
                     {name: 'Accuracy', value: response.data.data.segments[0].stats.shotsAccuracy.displayValue},
                     {name: 'Headshot Percentage', value: response.data.data.segments[0].stats.headshotPct.displayValue},
                     {name: 'W/L', value: response.data.data.segments[0].stats.wlPercentage.displayValue},
                     {name: 'Bank Account', value: `$${response.data.data.segments[0].stats.moneyEarned.displayValue}`},
                 )
-                .setImage(`${response.data.data.platformInfo.avatarUrl}`)
-                // .setColor("RANDOM");
+                .setImage(`${response.data.data.platformInfo.avatarUrl}`);
         })
         .catch(err => {
             console.log(err);
