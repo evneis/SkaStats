@@ -37,12 +37,12 @@ client.on('messageCreate', async(message) => {
                 .setColor(0x0099FF)
                 .setTitle(`Stats for ${message.author.username}`)
                 //Maybe change these to the bot's stuff
-                .setAuthor({name: message.author.username,iconURL: `${message.author.avatarURL({dynamic: true})}`})
-                .addFields({name: 'KD', value: response.data.data.segments[0].stats.kd.displayValue},
-                    {name: 'Accuracy', value: response.data.data.segments[0].stats.shotsAccuracy.displayValue},
+                .setAuthor({name: client.user.username, iconURL: `${client.user.avatarURL({dynamic: true})}`})
+                .addFields({name: 'KD', value: response.data.data.segments[0].stats.kd.displayValue, inline: true},
+                    {name: 'Accuracy', value: response.data.data.segments[0].stats.shotsAccuracy.displayValue, inline: true},
                     {name: 'Headshot Percentage', value: response.data.data.segments[0].stats.headshotPct.displayValue},
-                    {name: 'W/L', value: response.data.data.segments[0].stats.wlPercentage.displayValue},
-                    {name: 'Bank Account', value: `$${response.data.data.segments[0].stats.moneyEarned.displayValue}`},
+                    {name: 'W/L', value: response.data.data.segments[0].stats.wlPercentage.displayValue, inline: true},
+                    {name: 'Bank Account', value: `$${response.data.data.segments[0].stats.moneyEarned.displayValue}`, inline: true},
                 )
                 .setImage(`${response.data.data.platformInfo.avatarUrl}`);
         })
@@ -65,6 +65,7 @@ client.on('messageCreate', async(message) => {
     if(message.content.includes('%u map')) {
         var pic = 'not found';
         var stats = 'not found';
+        var embedded = null;
         var map = commands.commandParse(message.content);
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
@@ -85,6 +86,13 @@ client.on('messageCreate', async(message) => {
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
                     Round Win Percentage: ${commands.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
+
+                    embedded = new EmbedBuilder()
+                        .setTitle(`Stats for ${message.author.username} on ${obj.metadata.name}`)
+                        .setAuthor({name: client.user.username, iconURL: `${client.user.avatarURL({dynamic: true})}`})
+                        .addFields({name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true},
+                            {name: `Round Win Percentage`, value: `${commands.round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
+                        .setImage(`${obj.metadata.imageUrl}`)
                     break;
                 }
             }
@@ -94,12 +102,12 @@ client.on('messageCreate', async(message) => {
             pic = 'Error!';
         })
         if(pic === null) {pic = 'cuck!';}
-        message.reply({
-            content: pic,
-        });
+        // message.reply({
+        //     content: pic,
+        // });
         if(stats === null){stats = "cucky cheese!";}
         message.channel.send({
-            content: stats,
+            embeds: [embedded],
         });
     }
 })
