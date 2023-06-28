@@ -9,6 +9,7 @@ var Datastore = require('nedb');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 //configuring events the bot can recieve
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
+
 client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, 'commands');

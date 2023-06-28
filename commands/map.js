@@ -2,8 +2,8 @@
 require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
-const { SlashCommandBuilder } = require('discord.js');
-
+const { SlashCommandBuilder, EmbedBuilder, Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 function round(num, places) {
     var multiplier = Math.pow(10, places);
     return Math.round(num * multiplier) / multiplier;
@@ -29,6 +29,7 @@ module.exports = {
         }).then(response => {
             console.log(response.data);
             var respList = response.data.data;
+            var embedded;
             //TODO other map commands here in if statement
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
@@ -41,6 +42,14 @@ module.exports = {
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
                     Round Win Percentage: ${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
+
+                    embedded = new EmbedBuilder()
+                        .setTitle(`Stats for ${interaction.user} on ${obj.metadata.name}`)
+                        // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})
+                        .addFields({name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true},
+                            {name: `Round Win Percentage`, value: `${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
+                        .setImage(`${obj.metadata.imageUrl}`)
+
                     break;
                 }
             }
@@ -49,8 +58,8 @@ module.exports = {
             console.log(err);
             pic = 'Error!';
         })
-        if(pic === null) {pic = 'cuck!';}
-        await interaction.reply(pic);
-        await interaction.followUp(stats);
+        if(embedded === null) {embedded = 'cuck!';}
+        // await interaction.reply(pic);
+        await interaction.channel.send({embeds: embedded});
     },
 };

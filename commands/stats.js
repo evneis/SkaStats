@@ -2,7 +2,7 @@
 require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
