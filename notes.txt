@@ -9,7 +9,8 @@ https://discordjs.guide/creating-your-bot/main-file.html - GREAT DOCUMENTATION
 
 npm Scripts
     npm init -y
-    npm i discord.js axios dotenv filesystem.
+    npm i discord.js axios dotenv filesystem
+    npm i nedb --save
 
 
 # TASK LIST

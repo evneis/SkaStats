@@ -1,14 +1,15 @@
 const commands = require("./globalMethods")
 require('dotenv').config();
-const fs = require('fs').promises;
+const fs = require('node:fs');
+const path = require('node:path');
 const axios = require('axios');
 var Datastore = require('nedb');
 
 // importing the items we need from discord.js package
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 //configuring events the bot can recieve
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
-
+client.commands = new Collection();
 
 client.on('ready', () => {
     console.log('bot is ready');
