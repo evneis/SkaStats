@@ -14,7 +14,8 @@ npm Scripts
 
 
 # TASK LIST
-    Later on: Make a fancier response (graphs? images?)
+    Later on: Make a fancier response (graphs? images?) - https://discordjs.guide/popular-topics/embeds.html#embed-preview
+    Add a select menu for maps/weapons 
     Map command structure
         %map {map} - returns an overview of information about that map
         %map wins - returns which map you have the most wins on (maybe top 3?)
