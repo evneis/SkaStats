@@ -1,7 +1,7 @@
 const commands = require("./globalMethods")
 require('dotenv').config();
-const fs = require('node:fs');
-const path = require('node:path');
+const fs = require('fs');
+const path = require('path');
 const axios = require('axios');
 var Datastore = require('nedb');
 
@@ -19,7 +19,7 @@ client.on('messageCreate', async(message) => {
     if(message.content.includes('%u stats')) {
         var respObj = 'Hasnt been replaces';
         var pic = null;
-        const embedTest = null;
+        var embedTest = null;
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
@@ -35,16 +35,16 @@ client.on('messageCreate', async(message) => {
 
             embedTest = new EmbedBuilder()
                 .setColor(0x0099FF)
-                .setTitle(`Stats for ${message.author}`)
-                .setAuthor({name: `${message.author}`, iconURL: `${message.author.avatarURL}`})
-                .addFields(
-                    {name: 'KS', value: response.data.data.segments[0].stats.kd.displayValue},
-                    {mame: 'Accuracy', value: response.data.data.segments[0].stats.shotsAccuracy.displayValue},
+                .setTitle(`Stats for ${message.author.username}`)
+                // .setAuthor({name: `${message.author.username}`, iconURL: `${message.author.avatarURL}`})
+                .addFields({name: 'KD', value: response.data.data.segments[0].stats.kd.displayValue},
+                    {name: 'Accuracy', value: response.data.data.segments[0].stats.shotsAccuracy.displayValue},
                     {name: 'Headshot Percentage', value: response.data.data.segments[0].stats.headshotPct.displayValue},
                     {name: 'W/L', value: response.data.data.segments[0].stats.wlPercentage.displayValue},
                     {name: 'Bank Account', value: `$${response.data.data.segments[0].stats.moneyEarned.displayValue}`},
                 )
-                .setImage(`${response.data.data.platformInfo.avatarUrl}`);
+                .setImage(`${response.data.data.platformInfo.avatarUrl}`)
+                // .setColor("RANDOM");
         })
         .catch(err => {
             console.log(err);
@@ -57,7 +57,7 @@ client.on('messageCreate', async(message) => {
         //     content: pic,
         // })
         message.channel.send({
-            content: embedTest,
+            embeds: [embedTest],
         })
         
     }
