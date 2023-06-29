@@ -22,6 +22,7 @@ module.exports = {
         const map = interaction.options.getString('map');
         var pic = 'not found';
         var stats = 'not found';
+        var embedded;
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
@@ -29,7 +30,7 @@ module.exports = {
         }).then(response => {
             console.log(response.data);
             var respList = response.data.data;
-            var embedded;
+            
             //TODO other map commands here in if statement
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
@@ -45,7 +46,7 @@ module.exports = {
 
                     
                     embedded = new EmbedBuilder()
-                        .setTitle(`Stats for ${interaction.user} on ${obj.metadata.name}`)
+                        .setTitle(`Stats for ${interaction.user.username} on ${obj.metadata.name}`)
                         // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})
                         .addFields({name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true},
                             {name: `Round Win Percentage`, value: `${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true})
