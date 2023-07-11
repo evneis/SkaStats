@@ -1,6 +1,16 @@
 https://stackabuse.com/nedb-a-lightweight-javascript-database/ 
 ^ This is better, localstorage is for client-side websites n other bullshit
 
+
+
+
+
+
+
+
+
+--------------------OLD PSEUDO-----------------------------------
+
 Examples in documentation:
     localStorage.setItem("myCat", "Tom");
     const cat = localStorage.getItem("myCat");

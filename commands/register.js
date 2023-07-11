@@ -3,7 +3,6 @@ const fs = require('fs').promises;
 const axios = require('axios');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 var Datastore = require('nedb');
-const { SlashCommandBuilder, EmbedBuilder, Client, GatewayIntentBits } = require('discord.js');
 
 
 module.exports = {
@@ -16,6 +15,7 @@ module.exports = {
             .setRequired(true)),
     async execute(interaction) {
         //Datastore interactions here
-        const user = interaction.options.getString('username');
+        const username = interaction.options.getString('username');
+        const discordUser = interaction.user.id;
     },
 };

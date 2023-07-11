@@ -44,7 +44,7 @@ module.exports = {
                     stats = `Round Won: ${obj.stats.wins.displayValue}
                     Round Win Percentage: ${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
 
-                    
+                    console.log(interaction.user.id);
                     embedded = new EmbedBuilder()
                         .setTitle(`Stats for ${interaction.user.username} on ${obj.metadata.name}`)
                         // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})
