@@ -14,40 +14,15 @@ npm Scripts
 
 
 # TASK LIST
-    Later on: Make a fancier response (graphs? images?) - https://discordjs.guide/popular-topics/embeds.html#embed-preview
     Add a select menu for maps/weapons 
-    Map command structure
-        %map {map} - returns an overview of information about that map
-        %map wins - returns which map you have the most wins on (maybe top 3?)
+    Figure out more nedb shtuff
 
-Where we at 
-    Need to figure out slash commands (why is /rockpaperscissors coming up? where did that come from?)
-    WHat other info can we get from message object
-        look at discord.js documentation
 
 # API Alternatives
     Try using steams official API - might be more helpful
     https://partner.steamgames.com/doc/webapi_overview - look up tutorial (using steam webapi for csgo stats)
 
 ## Currently stuck
-    axios/discord - else if will return an axios error even if it matches the if statement completely
 
 # Stats Suggestions
-    KD
-    Accuracy
-    HS%
-    W/L
-    Bank
-Need to look into sending 2 replies for formatting sake
 
-Some text formatting notes:
-    Give this a shot - possible solution for multiple messages
-message.channel.send({embed: {
-      color: 3447003,
-      title: "Test:",
-      fields: [
-        { name: "Test 1", value: "Line1\nLine2\nLine3", inline: true},
-        { name: "Test 2", value: "AlsoLine1\nAlsoLine2\nAndLine3", inline: true}
-      ]
-    }
-  });
