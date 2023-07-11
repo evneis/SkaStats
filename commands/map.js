@@ -43,6 +43,7 @@ module.exports = {
                         `);
                    }
                    notEmbed = allMaps;
+                   break;
                 }
                 var obj = respList[i];
                 const objName = obj.metadata.name;
