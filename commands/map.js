@@ -23,6 +23,8 @@ module.exports = {
         var pic = 'not found';
         var stats = 'not found';
         var embedded;
+        var notEmbed;
+        var flag = false;
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
@@ -30,9 +32,18 @@ module.exports = {
         }).then(response => {
             console.log(response.data);
             var respList = response.data.data;
-            
             //TODO other map commands here in if statement
             for(var i = 0; i < respList.length; i++){
+                if(map.toLowerCase() === 'list'){
+                   flag = true;
+                   var allMaps = `Available Maps:
+                   `;
+                   for(var j=0; j<respList.length;j++){
+                        allMaps = allMaps.concat(`${respList[j].metadata.name}
+                        `);
+                   }
+                   notEmbed = allMaps;
+                }
                 var obj = respList[i];
                 const objName = obj.metadata.name;
                 // console.log(objName.toLowerCase());
@@ -63,6 +74,10 @@ module.exports = {
 
         if(embedded === null) {embedded = 'cuck!';}
         // await interaction.reply(pic);
-        await interaction.reply({embeds: [embedded]});
+        if(flag){
+            await interaction.reply(notEmbed);
+        }else{
+            await interaction.reply({embeds: [embedded]});
+        }
     },
 };
