@@ -20,6 +20,7 @@ module.exports = {
             console.log(response.data.data.segments);
             embedded = new EmbedBuilder()
                 .setTitle(`Stats for ${interaction.user.username}`)
+                // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})
                 .addFields({name: 'KD', value: response.data.data.segments[0].stats.kd.displayValue, inline: true},
                 {name: 'Accuracy', value: response.data.data.segments[0].stats.shotsAccuracy.displayValue, inline: true},
                 {name: 'Headshot Percentage', value: response.data.data.segments[0].stats.headshotPct.displayValue},
@@ -27,12 +28,6 @@ module.exports = {
                 {name: 'Bank Account', value: `$${response.data.data.segments[0].stats.moneyEarned.displayValue}`, inline: true},
             )
             .setImage(`${response.data.data.platformInfo.avatarUrl}`);
-            // pic = response.data.data.platformInfo.avatarUrl;
-            // respObj = `KD: ${response.data.data.segments[0].stats.kd.displayValue}
-            // Accuracy: ${response.data.data.segments[0].stats.shotsAccuracy.displayValue}
-            // Headshot Percentage: ${response.data.data.segments[0].stats.headshotPct.displayValue}
-            // W/L: ${response.data.data.segments[0].stats.wlPercentage.displayValue}
-            // Bank Account: $${response.data.data.segments[0].stats.moneyEarned.displayValue}`;
         })
         .catch(err => {
             console.log(err);
