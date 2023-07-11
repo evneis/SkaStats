@@ -16,7 +16,8 @@ npm Scripts
 # TASK LIST
     Add a select menu for maps/weapons 
     Figure out more nedb shtuff
-
+        upsert seems to add another entry - any way around that?
+            seems to auto delete after another run - will be interesting to see how this works in practice
 
 # API Alternatives
     Try using steams official API - might be more helpful
