@@ -21,7 +21,7 @@ var db = new Datastore({filename: `users.db`, autoload: true});
 // });
 
 
-// db.update({ discord: 'axb' }, { discord: 'axb', username: 'nupdate test' }, { upsert: false }, function (err, numReplaced, upsert) {
+// db.update({ discord: 'axb' }, { discord: 'axb', username: 'nupdate test' }, { upsert: true }, function (err, numReplaced, upsert) {
 //     console.log(numReplaced);
 //     // numReplaced = 1, upsert = { _id: 'id5', planet: 'Pluton', inhabited: false }
 //     // A new document { _id: 'id5', planet: 'Pluton', inhabited: false } has been added to the collection

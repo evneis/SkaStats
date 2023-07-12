@@ -17,11 +17,25 @@ module.exports = {
         //Datastore interactions here
         const username = interaction.options.getString('username');
         const discordUser = interaction.user.id;
+        var output;
         
-        db.findOne({ discord: `${discordUser}` }, function(err, doc) {
-            if(doc.name != null){
-
+        db.update({ discord: `${discordUser}` }, { discord: `${discordUser}`, username: `${username}` }, { upsert: true }, function (err, numReplaced, upsert) {
+            if(err){
+                console.log("in error");
+                output = "Error ocurred, please try again";
+            }
+            else{
+                
+                output = `Successfully Registered ${interaction.user.username} to ${username}`; 
             }
         });
+
+        // db.findOne({ discord: `${discordUser}` }, function(err, doc) {
+        //     if(doc.name != null){
+
+        //     }
+        // });
+        if(!output){output = 'CUCKO!';}
+        await interaction.reply(output);
     },
 };
