@@ -2,8 +2,8 @@ require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-var Datastore = require('nedb');
-var db = new Datastore({filename: `users.db`, autoload: true});
+var userdb = require("../db");
+
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,7 +19,7 @@ module.exports = {
         const discordUser = interaction.user.id;
         var output = 'not replaced';
         var flag = false;
-        db.update({ discord: `${discordUser}` }, { discord: `${discordUser}`, username: `${username}` }, { upsert: true }, function (err, numReplaced, upsert) {
+        userdb.db.update({ discord: `${discordUser}` }, { discord: `${discordUser}`, username: `${username}` }, { upsert: true }, function (err, numReplaced, upsert) {
             if(err){
                 console.log("in error");
                 flag = true;

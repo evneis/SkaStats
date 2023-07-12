@@ -3,8 +3,7 @@ require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-var Datastore = require('nedb');
-var db = new Datastore({ filename: `users.db`, autoload: true });
+var userdb = require("../db");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,7 +14,7 @@ module.exports = {
         var pic = null;
         var embedded;
         var username = await new Promise((resolve, reject) => {
-            db.findOne({ discord: `${interaction.user.id}` }, function (err, doc) {
+            userdb.db.findOne({ discord: `${interaction.user.id}` }, function (err, doc) {
                 if (doc) {
                     username = doc.username;
                     console.log(doc.username);

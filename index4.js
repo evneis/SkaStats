@@ -1,11 +1,12 @@
 const globalMethods = require("./globalMethods");
+var userdb = require("./db");
 require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const axios = require('axios');
 var Datastore = require(`nedb`);
 // TODO: break in case of emergency (uncomment below line for possible db fix)
-// var db = new Datastore({filename: `users.db`, autoload: true});
+// var db = new Datastore({filename: `users.db`});
 
 // importing the items we need from discord.js package
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');

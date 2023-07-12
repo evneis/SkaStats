@@ -29,6 +29,6 @@ db.insert(test2, function(err, doc) {
 //     // A new document { _id: 'id5', planet: 'Pluton', inhabited: false } has been added to the collection
 //   });
 
-db.findOne({ discord: '140254026787717121' }, function(err, doc) {
-    console.log(`Found ${doc.username}`)
-})
+// db.findOne({ discord: '140254026787717121' }, function(err, doc) {
+//     console.log(`Found ${doc.username}`)
+// })
