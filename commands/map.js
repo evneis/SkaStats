@@ -3,6 +3,8 @@ require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
 const { SlashCommandBuilder, EmbedBuilder, Client, GatewayIntentBits } = require('discord.js');
+var Datastore = require('nedb');
+var db = new Datastore({filename: `users.db`, autoload: true});
 // const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 function round(num, places) {
     var multiplier = Math.pow(10, places);
@@ -25,8 +27,14 @@ module.exports = {
         var embedded;
         var notEmbed;
         var flag = false;
+        var username;
+        db.findOne({discord: `${interaction.user.id}`}, function(err, doc){
+            if(doc)
+                username = doc.username;
+        });
+
         let resp = await axios({
-            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds/segments/map`,
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/${username}/segments/map`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {

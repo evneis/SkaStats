@@ -18,9 +18,18 @@ npm Scripts
     Figure out more nedb shtuff
         upsert seems to add another entry - any way around that?
             seems to auto delete after another run - will be interesting to see how this works in practice
+    Now that register seems to be working, I need to integrate this into the other methods 
+
+    After sufficient testing - start working on the weapon command
+        this will be the most challenging to parse
+            perhaps make a master list to send, translate user inputs to API data 
+
+
+
 
 # API Alternatives
     Try using steams official API - might be more helpful
+        Try this for the fancy SkaStats 2.0
     https://partner.steamgames.com/doc/webapi_overview - look up tutorial (using steam webapi for csgo stats)
 
 ## Currently stuck

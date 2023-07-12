@@ -11,7 +11,7 @@ module.exports = {
         .setDescription('Register name for stats')
         .addStringOption(option =>
             option.setName('username')
-            .setDescription('username as seen in Steam profile URL')
+            .setDescription('username EXACTLY as seen in Steam profile URL (after /id/')
             .setRequired(true)),
     async execute(interaction) {
         //Datastore interactions here
