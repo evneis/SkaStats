@@ -38,7 +38,12 @@ npm Scripts
 
 ## Currently stuck
 
-# Stats Suggestions
+# Hosting Options
+https://www.writebots.com/discord-bot-hosting/#:~:text=The%20best%20method%20for%20hosting,from%20your%20chosen%20location%20worldwide.
+    VPS
+        Vultr - roughly $2.50 a month - requires a bit of setup
+    Raspberry Pi
+        This is intriguing, I have a pi laying around
 
 # WEAPON NOTES
 Should query on toLowerCase(metadata.name) - this value makes more human sense than the key
