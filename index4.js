@@ -3,7 +3,6 @@ require('dotenv').config();
 const fs = require('node:fs');
 const path = require('node:path');
 const axios = require('axios');
-var Datastore = require('nedb');
 
 // importing the items we need from discord.js package
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');

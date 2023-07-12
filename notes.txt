@@ -19,6 +19,10 @@ npm Scripts
         upsert seems to add another entry - any way around that?
             seems to auto delete after another run - will be interesting to see how this works in practice
     Now that register seems to be working, I need to integrate this into the other methods 
+        Consider: db.persistence.compactDataFile - will compact the db instead of on next load
+    Database is acting really wonky
+        will error out until I run firstDatabaseRun
+        Perhaps call a load function in index4.js
 
     After sufficient testing - start working on the weapon command
         this will be the most challenging to parse

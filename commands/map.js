@@ -10,7 +10,6 @@ function round(num, places) {
     var multiplier = Math.pow(10, places);
     return Math.round(num * multiplier) / multiplier;
 }
-
 module.exports = {
     //Change to options/selectmenu
     data: new SlashCommandBuilder()
@@ -27,14 +26,17 @@ module.exports = {
         var embedded;
         var notEmbed;
         var flag = false;
-        var username;
-        db.findOne({discord: `${interaction.user.id}`}, function(err, doc){
-            if(doc){
-                username = doc.username;
-                console.log(doc.username);
-            }else{
-                console.log("no doc");
-            }
+        var username = await new Promise((resolve, reject) => {
+            db.findOne({discord: `${interaction.user.id}`}, function(err, doc){
+                if(doc){
+                    username = doc.username;
+                    console.log(doc.username);
+                    resolve(doc.username);
+                }else{
+                    console.log("no doc");
+                }
+        })
+        
         });
 
         let resp = await axios({
