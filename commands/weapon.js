@@ -18,6 +18,7 @@ module.exports = {
         var embedded;
         var notEmbed;
         var flag = false;
+        var flag2 = false;
         var username = await new Promise((resolve, reject) => {
             userdb.db.findOne({ discord: `${interaction.user.id}` }, function (err, doc) {
                 if (doc) {
@@ -45,6 +46,7 @@ module.exports = {
             for (var i = 0; i < respList.length; i++) {
                 if (weap.toLowerCase() === 'list') {
                     flag = true;
+                    flag2 = true;
                     var allWeaps = `Available Weapons:
                     `;
                     for (var j = 0; j < respList.length; j++) {
@@ -65,6 +67,7 @@ module.exports = {
                             { name: `Accuracy`, value: `${obj.stats.shotsAccuracy.displayValue}` })
                         .setImage(`${obj.metadata.imageUrl}`);
                     console.log(`${obj.metadata.name}`);
+                    flag2 = true;
                     break;
                 }
             }
@@ -73,8 +76,9 @@ module.exports = {
         });
 
         if (!embedded) embedded = `CUCK!`;
-
-        if (flag)
+        if(!flag2)
+            await interaction.reply({content: "No Weapon Found", ephemeral: true})
+        else if (flag)
             await interaction.reply(notEmbed);
         else
             await interaction.reply({ embeds: [embedded] });

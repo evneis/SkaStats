@@ -27,6 +27,7 @@ module.exports = {
         var embedded;
         var notEmbed;
         var flag = false;
+        var flag2 = false;
         var username = await new Promise((resolve, reject) => {
             userdb.db.findOne({ discord: `${interaction.user.id}` }, function (err, doc) {
                 if (doc) {
@@ -56,6 +57,7 @@ module.exports = {
             for (var i = 0; i < respList.length; i++) {
                 if (map.toLowerCase() === 'list') {
                     flag = true;
+                    flag2 = true;
                     var allMaps = `Available Maps:
                    `;
                     for (var j = 0; j < respList.length; j++) {
@@ -83,7 +85,7 @@ module.exports = {
                         .addFields({ name: `Rounds Won`, value: `${obj.stats.wins.displayValue}`, inline: true },
                             { name: `Round Win Percentage`, value: `${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`, inline: true })
                         .setImage(`${obj.metadata.imageUrl}`);
-
+                    flag2 = true;
                     break;
                 }
             }
@@ -95,7 +97,9 @@ module.exports = {
 
         if (embedded === null) { embedded = 'cuck!'; }
         // await interaction.reply(pic);
-        if (flag) {
+        if(!flag2)
+            await interaction.reply({content: "No Map Found", ephemeral: true});
+        else if (flag) {
             await interaction.reply(notEmbed);
         } else {
             await interaction.reply({ embeds: [embedded] });
