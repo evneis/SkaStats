@@ -41,7 +41,7 @@ module.exports = {
             headers: { "TRN-Api-Key": process.env.TRN_API_KEY, },
             method: 'get',
         }).then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             var respList = response.data.data;
             for (var i = 0; i < respList.length; i++) {
                 if (weap.toLowerCase() === 'list') {
@@ -66,7 +66,6 @@ module.exports = {
                             { name: `Shots Fired`, value: `${obj.stats.shotsFired.displayValue}` },
                             { name: `Accuracy`, value: `${obj.stats.shotsAccuracy.displayValue}` })
                         .setImage(`${obj.metadata.imageUrl}`);
-                    console.log(`${obj.metadata.name}`);
                     flag2 = true;
                     break;
                 }
