@@ -17,6 +17,7 @@ npm Scripts
     Add ERROR CODESSSS
         embedded error codes for:
             im sure theres more
+    MOST IMPORTANT - Get global commands instead of guild - I want to remove guild id entirely
     Clean Up logs and code
     Look into global slash commands - will remove the need for a guild id
     

@@ -32,6 +32,7 @@ const rest = new REST().setToken(process.env.DISCORD_BOT_ID);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
+			// TODO: make this global if possible
 			Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
 			{ body: commands },
 		);
