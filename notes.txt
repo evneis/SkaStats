@@ -16,10 +16,14 @@ npm Scripts
 # TASK LIST
     Add ERROR CODESSSS
         embedded error codes for:
-            user not signed in
-            no weapon/map found
             im sure theres more
     Clean Up logs and code
+    Look into global slash commands - will remove the need for a guild id
+    
+    GOOD PRACTICE - construct actual error logs that would be useful for debugging (e.g which user tried what at when)
+        Not worth the effort on a small scale like this but would be good practice/habit
+    
+    After this is ran on production for a while - should definitely clean up old code and stuff
 
 
 
