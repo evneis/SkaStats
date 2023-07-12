@@ -84,7 +84,7 @@ client.on('messageCreate', async(message) => {
         }).then(response => {
             console.log(response.data);
             var respList = response.data.data;
-            //TODO other map commands here in if statement
+            //TODO: other map commands here in if statement
             for(var i = 0; i < respList.length; i++){
                 var obj = respList[i];
                 const objName = obj.metadata.name;

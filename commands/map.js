@@ -46,7 +46,7 @@ module.exports = {
         }).then(response => {
             console.log(response.data);
             var respList = response.data.data;
-            //TODO other map commands here in if statement
+            //TODO: other map commands here in if statement
             for(var i = 0; i < respList.length; i++){
                 if(map.toLowerCase() === 'list'){
                    flag = true;
