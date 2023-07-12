@@ -3,6 +3,8 @@ require('dotenv').config();
 const fs = require('fs').promises;
 const axios = require('axios');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+var Datastore = require('nedb');
+var db = new Datastore({ filename: `users.db`, autoload: true });
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,8 +14,20 @@ module.exports = {
         var respObj = 'Hasnt been replaces';
         var pic = null;
         var embedded;
+        var username = await new Promise((resolve, reject) => {
+            db.findOne({ discord: `${interaction.user.id}` }, function (err, doc) {
+                if (doc) {
+                    username = doc.username;
+                    console.log(doc.username);
+                    resolve(doc.username);
+                } else {
+                    console.log("no doc");
+                }
+            });
+
+        });
         let resp = await axios({
-            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/HirachiDiamonds`,
+            url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/${username}`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
