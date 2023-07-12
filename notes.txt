@@ -14,19 +14,12 @@ npm Scripts
 
 
 # TASK LIST
-    Add a select menu for maps/weapons 
-    Figure out more nedb shtuff
-        upsert seems to add another entry - any way around that?
-            seems to auto delete after another run - will be interesting to see how this works in practice
-    Now that register seems to be working, I need to integrate this into the other methods 
-        Consider: db.persistence.compactDataFile - will compact the db instead of on next load
-    Database is acting really wonky
-        will error out until I run firstDatabaseRun
-        Perhaps call a load function in index4.js
-
-    After sufficient testing - start working on the weapon command
-        this will be the most challenging to parse
-            perhaps make a master list to send, translate user inputs to API data 
+    Add ERROR CODESSSS
+        embedded error codes for:
+            user not signed in
+            no weapon/map found
+            im sure theres more
+    Clean Up logs and code
 
 
 
