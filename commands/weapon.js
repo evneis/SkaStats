@@ -30,7 +30,10 @@ module.exports = {
             });
 
         });
-
+        if(!username){
+            await interaction.reply({ content: `No user registered`, ephemeral: true });
+            return;
+        }
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/${username}/segments/weapon`,
             headers: { "TRN-Api-Key": process.env.TRN_API_KEY, },
