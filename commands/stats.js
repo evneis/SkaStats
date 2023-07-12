@@ -21,10 +21,15 @@ module.exports = {
                     resolve(doc.username);
                 } else {
                     console.log("no doc");
+                    resolve(null);
                 }
             });
-
         });
+
+        if(!username){
+            await interaction.reply({ content: `No user registered`, ephemeral: true });
+            return;
+        }
         let resp = await axios({
             url: `https://public-api.tracker.gg/v2/csgo/standard/profile/steam/${username}`,
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},

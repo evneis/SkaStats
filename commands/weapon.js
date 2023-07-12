@@ -26,6 +26,7 @@ module.exports = {
                     resolve(doc.username);
                 } else {
                     console.log("no doc");
+                    resolve(null);
                 }
             });
 
