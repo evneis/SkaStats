@@ -29,8 +29,12 @@ module.exports = {
         var flag = false;
         var username;
         db.findOne({discord: `${interaction.user.id}`}, function(err, doc){
-            if(doc)
+            if(doc){
                 username = doc.username;
+                console.log(doc.username);
+            }else{
+                console.log("no doc");
+            }
         });
 
         let resp = await axios({

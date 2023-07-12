@@ -1,8 +1,10 @@
 var Datastore = require('nedb');
 
 
-var db = new Datastore({filename: `users.db`, autoload: true});
-
+var db = new Datastore({filename: `users.db`});
+db.loadDatabase(function (err) {    // Callback is optional
+    // Now commands will be executed
+  });
 var test2 = {
     discord: 'axb',
     username: 'anotha12'
