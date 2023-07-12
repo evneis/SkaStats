@@ -32,7 +32,7 @@ module.exports = {
             userdb.db.findOne({ discord: `${interaction.user.id}` }, function (err, doc) {
                 if (doc) {
                     username = doc.username;
-                    console.log(doc.username);
+                    // console.log(doc.username);
                     resolve(doc.username);
                 } else {
                     console.log("no doc");
@@ -51,7 +51,7 @@ module.exports = {
             headers: { "TRN-Api-Key": process.env.TRN_API_KEY, },
             method: 'get',
         }).then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             var respList = response.data.data;
             //TODO: other map commands here in if statement
             for (var i = 0; i < respList.length; i++) {
@@ -73,12 +73,12 @@ module.exports = {
                 // console.log(map.toLowerCase());
                 if (obj.metadata.name.toLowerCase() === map.toLowerCase()) {
                     pic = obj.metadata.imageUrl;
-                    console.log(pic);
+                    // console.log(pic);
 
                     stats = `Round Won: ${obj.stats.wins.displayValue}
                     Round Win Percentage: ${round((obj.stats.wins.value / obj.stats.rounds.value) * 100, 2)}%`;
 
-                    console.log(interaction.user.id);
+                    // console.log(interaction.user.id);
                     embedded = new EmbedBuilder()
                         .setTitle(`Stats for ${interaction.user.username} on ${obj.metadata.name}`)
                         // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})

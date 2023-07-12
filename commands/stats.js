@@ -35,7 +35,7 @@ module.exports = {
             headers: {"TRN-Api-Key": process.env.TRN_API_KEY,},
             method: 'get',
         }).then(response => {
-            console.log(response.data.data.segments);
+            // console.log(response.data.data.segments);
             embedded = new EmbedBuilder()
                 .setTitle(`Stats for ${interaction.user.username}`)
                 // .setAuthor({name: client.user, iconURL: `${client.user.displayAvatarURL({dynamic: true})}`})

@@ -1,67 +1,48 @@
-// import * as commands from "globalMethods.js";
-const commands = require("./globalMethods")
+var userdb = require("./db");
 require('dotenv').config();
-
-const fs = require('fs').promises;
+const fs = require('node:fs');
+const path = require('node:path');
 const axios = require('axios');
+var Datastore = require(`nedb`);
+// TODO: break in case of emergency (uncomment below line for possible db fix)
+// var db = new Datastore({filename: `users.db`});
+
 // importing the items we need from discord.js package
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 //configuring events the bot can recieve
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 
+client.commands = new Collection();
 
-//Confirmation that bot is online
-client.on('ready', () => {
-    console.log('bot is ready');
-})
+const commandsPath = path.join(__dirname, 'commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
-
-client.on('messageCreate', async (message) => {
-    var quote;
-    if (message.content.includes('%u help') || message.content === ('%u')) {
-        var msg = "testing <br> how to make <br> breaks"
-        message.reply({
-            content: msg,
-        })
+for (const file of commandFiles) {
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+    // Set a new item in the Collection with the key as the command name and the value as the exported module
+    if ('data' in command && 'execute' in command) {
+        client.commands.set(command.data.name, command);
+    } else {
+        console.log(`WARNING The command at ${filePath} is missing a required "data" or "execute" property.`)
     }
-    else if (message.content.includes('%u map')) {
-        var map = commands.commandParse(message.content);
+}
 
-        var pic;
-        let resp = await axios.get(`https://public-api.tracker.gg/v2/csgo/standard/profile/steam/hirachidiamonds/segments/map`, {
-            params: {
-                "TRN-Api-Key": process.env.TRN_API_KEY
-            }
-        }).then(response => {
-            // console.log(response.data);
-            var respList = response.data.data;
+// client.on('ready', () => {
+//     console.log('bot is ready');
+// })
 
-            for(var i = 0; i < respList.length; i++){
-                var obj = respList[i];
-                const objName = obj["metadata"]["name"];
+const eventsPath = path.join(__dirname, 'events');
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 
-                if(obj.metadata.name.toLowerCase() === map.toLowerCase()){
-                    pic = obj.metadata.imageUrl;
-                    console.log(pic);
-                    break;
-                }
-            }
-
-
-        })
-        .catch(err => {
-            console.log(err)
-        });
-        // const quote = resp.data.content;
-        if(pic == null){
-            pic = "nothing found";
-        }
-        quote = pic;
-
-        message.reply({
-            content: quote,
-        })
-    }
-})
+for (const file of eventFiles) {
+	const filePath = path.join(eventsPath, file);
+	const event = require(filePath);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
 
 client.login(process.env.DISCORD_BOT_ID);
