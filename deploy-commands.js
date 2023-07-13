@@ -1,5 +1,4 @@
 const { REST, Routes } = require('discord.js');
-const globalMethods = require("./globalMethods");
 // const { clientId, guildId, token } = require('./config.json');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -33,7 +32,8 @@ const rest = new REST().setToken(process.env.DISCORD_BOT_ID);
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
 			// TODO: make this global if possible
-			Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+			// Routes.applicationGuildCommands(process.env.CLIENT_ID, process.env.GUILD_ID),
+			Routes.applicationCommands(process.env.CLIENT_ID),
 			{ body: commands },
 		);
 
