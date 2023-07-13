@@ -1,0 +1,5 @@
+sudo docker build . -t SkaStats
+sudo docker images 
+sudo docker run -d SkaStats
+sudo docker ps
+sudo docker stop {ID}
