@@ -2,4 +2,4 @@
 privnotes.txt
 users.db
 .vs/
-*node_modules/*
+node_modules/
