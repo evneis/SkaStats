@@ -17,3 +17,8 @@ Returns wins and win percentage based on round. Put "list" instead of a map to s
 # Time to do reading
 - https://partner.steamgames.com/doc/webapi_overview
 - https://partner.steamgames.com/doc/api
+# What to do next
+---
+- Rework Tracker.gg API to use official Steam API
+- Write down instructions to build/run
+- Ensure localdb solution will work
