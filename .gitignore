@@ -1,3 +1,5 @@
 .env
 privnotes.txt
 users.db
+.vs/
+*node_modules/*
